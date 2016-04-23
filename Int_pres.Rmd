@@ -1,0 +1,91 @@
+---
+title: "Reproduserbare analyser"
+subtitle: "Markdown, shiny, og git i NINA"
+author: "Jens Åström"
+date: "`r format(Sys.time(), '%d %b, %Y')`"
+output: 
+  NinaR::nina_slidy:
+    self-contained: yes
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+## Innhold
+
+- Intro markdown
+    + Gå igjennom alle fordeler med å bruke rmarkdown i dagligt bruk
+    + Reproduserbarhet
+    + Eksempel på ulike outputs
+    + Referanseliste, sitere, JRef
+    + Vis kortrapport-templat
+    + Slidy-templat
+    + Encodings! UTF-8
+    + xtable, knitr::kable
+    
+## Innhold (forts.)
+
+- Steg fra start, installasjon rstudio, MikTeX, NinaR
+- Automatiserte, gjennbruke templater
+- Shiny
+    + Diverse brukstyper
+    + Eksempel
+    + Visualisere
+    + Laste ned
+    + Laste opp
+    + Seatrack, DS_kursapp, humle/iframe
+
+## Innhold (forts.)
+
+- Git
+    + NINAnor
+    + Bruke i R
+    + Terminal
+    + Provosere frem god arbeidsmåte, folderstruktur.
+- NinaR
+    + Andre funksjoner (enn templater)
+    + Skriv funksjoner
+- Begynn her
+    + linker til info til de ulike verktøyen
+    
+
+
+## To-do
+
+- Beamer-templat
+    + Sub-bullet
+- Bullet 2
+- Bullet 3
+
+## Side med R-resultater
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Side med R-plot
+
+```{r neplot}
+plot(1:10, 1:10)
+```
+
+## Side med Shiny-app
+
+```{r eruptions, echo=FALSE}
+inputPanel(
+  selectInput("n_breaks", label = "Number of bins:",
+              choices = c(10, 20, 35, 50), selected = 20),
+  
+  sliderInput("bw_adjust", label = "Bandwidth adjustment:",
+              min = 0.2, max = 2, value = 1, step = 0.2)
+)
+
+renderPlot({
+  hist(faithful$eruptions, probability = TRUE, breaks = as.numeric(input$n_breaks),
+       xlab = "Duration (minutes)", main = "Geyser eruption duration")
+  
+  dens <- density(faithful$eruptions, adjust = input$bw_adjust)
+  lines(dens, col = "blue")
+})
+```
