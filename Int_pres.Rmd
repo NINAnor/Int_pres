@@ -10,7 +10,9 @@ runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+require(NinaR)
+require(knitr)
+opts_chunk$set(echo = TRUE, tidy = TRUE)
 ```
 Innhold
 ========
@@ -76,19 +78,103 @@ To-do
 - Bullet 2
 - Bullet 3
 
-Side med R-resultater
+NinaR - en R-pakke for NINA!
 ========
 
-```{r cars, echo = TRUE}
-summary(cars)
-```
+- R blir altmer "standarden" for statistisk analyse, også i NINA
+    + Hvorfør ikke lage en R-pakke med funksjoner tilpasset NINA?
 
-Side med R-plot
+NinaR - en R-pakke for NINA!
 ========
 
-```{r neplot}
-plot(1:10, 1:10)
+- R blir altmer "standarden" for statistisk analyse, også i NINA
+    + Hvorfør ikke lage en R-pakke med funksjoner tilpasset NINA?
+
+```{r, eval=F}
+library(devtools)
+install_github("NINAnor/NinaR")
 ```
+
+```{r, echo=F, out.width = 400, fig.retina = NULL, fig.cap="Available functions in NinaR V 0.0.4"}
+include_graphics("./img/NinaR_help.png")
+```
+
+
+Rapport-maller
+==========
+
+![Mall for kortrapport i R!](img/new_template.png)
+
+Alternativt
+```{r, eval=F}
+rmarkdown::draft("new_report", "nina_kortrapport", package="NinaR")
+```
+
+Rapport-maller
+==========
+
+```{r, echo=F, out.width = 600, fig.retina = NULL, fig.cap="Nina kortrapport template"}
+include_graphics("./img/nina_kort_template.png")
+```
+
+Rapport-maller
+==========
+
+```{r, echo=F, out.width = 500, fig.retina = NULL, fig.cap="Nina kortrapport template"}
+include_graphics("./img/titleborder.png")
+```
+
+Rapport-maller
+==========
+
+- Pros
+    + bra
+- Cons
+    + dårligt
+
+Presentasjon-maller
+===========
+
+![Mall for presentasjoner i R!](img/new_template.png)
+
+Alternativt
+```{r, eval=F}
+rmarkdown::draft("new_report", "nina_slidy", package="NinaR")
+```
+
+NINA-grafik
+==========
+
+```{r, out.width=700}
+NinaPalette()
+
+plot((1:10)^2, 1:10, col=NinaPalette(), cex=4, pch=16, las=1)
+
+```
+
+NINA-grafik
+==========
+
+```{r, message=F, out.width=700}
+NinaPalette()
+
+plot((1:10)^2, 1:10, col=NinaPalette(), cex=4, pch=16, las=1)
+addLogo()
+
+```
+
+NINA-grafik
+==========
+
+
+```{r, out.width=700}
+plot((1:10)^2, 1:10, col=NinaPalette(), cex=4, pch=16, las=1, type="n")
+addLogo(x = 0.5, y = 0.5, size = 1)
+grid.rect(gp = gpar(fill = rgb(1, 1, 1, .6)))
+points((1:10)^2, 1:10, col=NinaPalette(), cex=4, pch=16)
+```
+
+
 
 Side med Shiny-app
 =========
