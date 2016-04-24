@@ -12,7 +12,22 @@ runtime: shiny
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
-## Innhold
+Innhold
+========
+
+- Reproduserbarhet
+- (r)markdown
+- Shiny
+- NinaR
+- Git
+
+Reproduserbarhet
+============
+
+
+
+Markdown
+========
 
 - Intro markdown
     + Gå igjennom alle fordeler med å bruke rmarkdown i dagligt bruk
@@ -24,7 +39,8 @@ knitr::opts_chunk$set(echo = FALSE)
     + Encodings! UTF-8
     + xtable, knitr::kable
     
-## Innhold (forts.)
+Innhold (forts.)
+==========
 
 - Steg fra start, installasjon rstudio, MikTeX, NinaR
 - Automatiserte, gjennbruke templater
@@ -36,7 +52,8 @@ knitr::opts_chunk$set(echo = FALSE)
     + Laste opp
     + Seatrack, DS_kursapp, humle/iframe
 
-## Innhold (forts.)
+Innhold (forts.)
+==============
 
 - Git
     + NINAnor
@@ -51,26 +68,30 @@ knitr::opts_chunk$set(echo = FALSE)
     
 
 
-## To-do
+To-do
+========
 
 - Beamer-templat
     + Sub-bullet
 - Bullet 2
 - Bullet 3
 
-## Side med R-resultater
+Side med R-resultater
+========
 
 ```{r cars, echo = TRUE}
 summary(cars)
 ```
 
-## Side med R-plot
+Side med R-plot
+========
 
 ```{r neplot}
 plot(1:10, 1:10)
 ```
 
-## Side med Shiny-app
+Side med Shiny-app
+=========
 
 ```{r eruptions, echo=FALSE}
 inputPanel(
