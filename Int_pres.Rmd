@@ -6,7 +6,8 @@ date: "`r format(Sys.time(), '%d %b, %Y')`"
 output: 
   NinaR::nina_slidy:
     self-contained: yes
-    runtime: shiny
+runtime: shiny
+bibliography: mybibfile.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -52,13 +53,14 @@ include_graphics("img/what_did_i.jpg")
 - Det var ett skrivefeil i protokollet, så jeg må kjøre allt på nytt!
 - Jeg skal gjøre noe liknende igjen men rekker ikke lage allt fra start!
 
-Reproduserbarhet
+Reproduserbarhet {.incremental}
 ============
 
 - Grunnleggende egenskap hos vetenskap
     + Derfor beskriver vi material og metoder
 - Allt mer kompliserte analyser - reproduserbare analyser
     + Återskape vei fra data til resultat
+- Dokumentasjon av analyser kommer ingå i ISO-planen for databearbeiding.
 - Mange programvarer lager ikke spor
     + Excel, SPSS, Minitab etc.
 - Det finns bedre måter enn rene skriptfiler!
@@ -259,10 +261,13 @@ Rapport-mall
 - Hva med referenser?
     + Bruk bib-fil (JabRef)
 
+Kan skrives `[@NinaR]` for [@NinaR] eller `[-@NinaR]` om du allerede nevner navnet, så her [-@NinaR]. 
+
 ```{r, eval=F}
 \citet{astrom2016}
 
 ```
+
 
 
 Rapport-maller
@@ -389,3 +394,5 @@ Nackdeler med et "riktigt" versjoneringssystem
 
 - Ennå en ting å lære seg
 - Fungerer dårligt med Word (fungerer bra med tekstfiler)
+
+# References
