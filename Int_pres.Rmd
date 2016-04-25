@@ -7,6 +7,7 @@ output:
   NinaR::nina_slidy:
     self-contained: yes
 runtime: shiny
+theme: showdown
 bibliography: mybibfile.bib
 ---
 
@@ -14,6 +15,23 @@ bibliography: mybibfile.bib
 require(NinaR)
 require(knitr)
 opts_chunk$set(echo = TRUE, tidy = TRUE, fig.path="figure-slidy")
+
+knit_hooks$set(source = function(x, options){
+  if (!is.null(options$verbatim) && options$verbatim){
+    opts = gsub(",\\s*verbatim\\s*=\\s*TRUE\\s*", "", options$params.src)
+    bef = sprintf('\n\n    ```{r %s}\n', opts, "\n")
+    stringr::str_c(
+      bef, 
+      knitr:::indent_block(paste(x, collapse = '\n'), "    "), 
+      "\n    ```\n"
+    )
+  } else {
+    stringr::str_c("\n\n```", tolower(options$engine), "\n", 
+      paste(x, collapse = '\n'), "\n```\n\n"
+    )
+  }
+})
+
 ```
 Innhold
 ========
@@ -24,45 +42,46 @@ Innhold
 - NinaR
 - Git
 
-Reproduserbarhet
+
+Reproduserbarhet - dem {.incremental}
 ============
 
-Reproduserbarhet
-============
-
-```{r, out.width=300, echo=F, incremental=T}
+```{r, out.width=300, echo=F}
 include_graphics("img/how_did_you.jpg")
 ``` 
 
-- Jeg skjønner ikke hva du gjort!
-- Jeg får ikke samme resultater som du!
-- Hvordan kan jeg sjekke analysene dine?
-- Hvordan kan jeg lære av analysene dine?
+>- Jeg skjønner ikke hva du gjort!
+>- Jeg får ikke samme resultater som du!
+>- Hvordan kan jeg sjekke analysene dine?
+>- Hvordan kan jeg lære av analysene dine?
 
 
-Reproduserbarhet
+Reproduserbarhet - du {.incremental}
 ============
 
 ```{r, out.width=300, echo=F}
 include_graphics("img/what_did_i.jpg")
 ```
 
-- Det tar tid og blir feil når jeg bruker copy paste til Word!
-- Jeg husker ikke hva jeg gjorde!
-- Jeg får ikke samme resultater som før!
-- Det var ett skrivefeil i protokollet, så jeg må kjøre allt på nytt!
-- Jeg skal gjøre noe liknende igjen men rekker ikke lage allt fra start!
+>- Det tar tid og blir feil når jeg bruker copy paste til Word!
+>- Jeg husker ikke hva jeg gjorde!
+>- Jeg får ikke samme resultater som tidligere!
+>- Det var ett skrivefeil i protokollet, så jeg må kjøre allt på nytt!
+>- Jeg skal gjøre noe liknende igjen men rekker ikke lage allt fra start!
 
 Reproduserbarhet {.incremental}
 ============
 
-- Grunnleggende egenskap hos vetenskap
-    + Derfor beskriver vi material og metoder
-- Allt mer kompliserte analyser - reproduserbare analyser
-    + Återskape vei fra data til resultat
+Grunnleggende egenskap hos vetenskap
+--------------
+
+- Allt mer kompliserte analyser - hur lager vi reproduserbare analyser?
+    + Återskape veien fra data til resultat
 - Dokumentasjon av analyser kommer ingå i ISO-planen for databearbeiding.
-- Mange programvarer lager ikke spor
-    + Excel, SPSS, Minitab etc.
+- Reproduserbare analyser er den etiske måten å arbeide på.
+- Problem
+    + Mange programvarer lager ikke spor
+        + Excel, SPSS, Minitab etc.
 - Det finns bedre måter enn rene skriptfiler!
 
 
@@ -124,6 +143,15 @@ Markdown
 =========
 
 Eksempler på produserte rapporter
+
+Eksempel
+================
+
+Her kommer et eksempel, kommentarer skrivs i vanlig tekst. Kod skrives slik:
+```{r, verbatim=T}
+x<-1:10
+x
+```
 
 
 Eksempel
@@ -261,6 +289,7 @@ Rapport-mall
 - Hva med referenser?
     + Bruk bib-fil (JabRef)
 
+`Markdown`
 Kan skrives `[@NinaR]` for [@NinaR] eller `[-@NinaR]` om du allerede nevner navnet, så her [-@NinaR]. 
 
 ```{r, eval=F}
