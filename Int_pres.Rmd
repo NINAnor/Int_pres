@@ -6,25 +6,158 @@ date: "`r format(Sys.time(), '%d %b, %Y')`"
 output: 
   NinaR::nina_slidy:
     self-contained: yes
-runtime: shiny
+    runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
 require(NinaR)
 require(knitr)
-opts_chunk$set(echo = TRUE, tidy = TRUE)
+opts_chunk$set(echo = TRUE, tidy = TRUE, fig.path="figure-slidy")
 ```
 Innhold
 ========
 
 - Reproduserbarhet
-- (r)markdown
+- (R)Markdown
 - Shiny
 - NinaR
 - Git
 
 Reproduserbarhet
 ============
+
+Reproduserbarhet
+============
+
+```{r, out.width=300, echo=F, incremental=T}
+include_graphics("img/how_did_you.jpg")
+``` 
+
+- Jeg skjønner ikke hva du gjort!
+- Jeg får ikke samme resultater som du!
+- Hvordan kan jeg sjekke analysene dine?
+- Hvordan kan jeg lære av analysene dine?
+
+
+Reproduserbarhet
+============
+
+```{r, out.width=300, echo=F}
+include_graphics("img/what_did_i.jpg")
+```
+
+- Det tar tid og blir feil når jeg bruker copy paste til Word!
+- Jeg husker ikke hva jeg gjorde!
+- Jeg får ikke samme resultater som før!
+- Det var ett skrivefeil i protokollet, så jeg må kjøre allt på nytt!
+- Jeg skal gjøre noe liknende igjen men rekker ikke lage allt fra start!
+
+Reproduserbarhet
+============
+
+- Grunnleggende egenskap hos vetenskap
+    + Derfor beskriver vi material og metoder
+- Allt mer kompliserte analyser - reproduserbare analyser
+    + Återskape vei fra data til resultat
+- Mange programvarer lager ikke spor
+    + Excel, SPSS, Minitab etc.
+- Det finns bedre måter enn rene skriptfiler!
+
+
+
+Bruk alltid markdown!
+========
+
+Når du vel prøvt det, vil du aldrig gå tilbake.
+------------------
+
+- Samle kommentarer, kode og resultater i ett dokument.
+- Koden kjøres når dokumentet lages
+    + Alltid uppdaterte resultater
+- Enkelt
+    + Enklere enn Sweave (trenger ikke å lære $\LaTeX$)
+- Flere outputs
+    + html (publisere)
+    + Word (standard for mange)
+    + pdf (penest, lese, printe, publisere i trykk)
+
+
+Bruk alltid markdown!
+========
+
+```{r, echo=F, fig.cap="Spesielt enkelt i Rstudio", fig.width=50}
+include_graphics("img/new_markdown.png")
+```
+
+Bruk alltid markdown!
+========
+
+```{r, echo=F, fig.cap="Starte med eksisterende mall", fig.width=50}
+include_graphics("img/markdown_templ.png")
+```
+
+
+Markdown
+============
+
+Markdown er et vanligt "språk" for å typsette på internet. 
+
+Se: https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+Brukes enklest gjennom Rstudio. 
+
+Alternativt: 
+
+- `install.packages("rmarkdown")`
+- installere [pandoc](http://johnmacfarlane.net/pandoc/installing.html)
+    + Greit verktøy å ha
+
+Markdown
+=========
+
+Eksempler på produserte rapporter
+
+
+Eksempel
+================
+
+```{r}
+set.seed(12345)
+x=1:100
+y=0.5*x+rnorm(100, 0, 30)
+mod1<-glm(y~x)
+summary(mod1)
+
+```
+
+Eksempel
+================
+
+```{r}
+knitr::kable(summary(mod1)$coefficients, digits=2)
+```
+<br>
+
+Alternativt, bruke xtable (best for pdf)
+```{r, results='asis', eval=F}
+require(xtable)
+print(xtable(summary(mod1)$coefficients), type="html")
+```
+
+Eksempel
+============
+
+```{r mod_fig, fig.cap="Model validations"}
+par(mfrow=c(2,2))
+plot(mod1)
+
+```
 
 
 
@@ -69,15 +202,6 @@ Innhold (forts.)
     + linker til info til de ulike verktøyen
     
 
-
-To-do
-========
-
-- Beamer-templat
-    + Sub-bullet
-- Bullet 2
-- Bullet 3
-
 NinaR - en R-pakke for NINA!
 ========
 
@@ -117,20 +241,38 @@ Rapport-maller
 include_graphics("./img/nina_kort_template.png")
 ```
 
-Rapport-maller
+Rapport-mall
 ==========
 
 ```{r, echo=F, out.width = 500, fig.retina = NULL, fig.cap="Nina kortrapport template"}
 include_graphics("./img/titleborder.png")
 ```
 
+Rapport-mall
+==========
+
+- Hva med referenser?
+
+Rapport-mall
+==========
+
+- Hva med referenser?
+    + Bruk bib-fil (JabRef)
+
+```{r, eval=F}
+\citet{astrom2016}
+
+```
+
+
 Rapport-maller
 ==========
 
 - Pros
-    + bra
+    + Kod og rapport hålls sammen
+    + Enkelt å vise statistisk metodikk
 - Cons
-    + dårligt
+    + Kolleger vill fortsatt bruke Word
 
 Presentasjon-maller
 ===========
@@ -156,8 +298,6 @@ NINA-grafik
 ==========
 
 ```{r, message=F, out.width=700}
-NinaPalette()
-
 plot((1:10)^2, 1:10, col=NinaPalette(), cex=4, pch=16, las=1)
 addLogo()
 
@@ -168,15 +308,25 @@ NINA-grafik
 
 
 ```{r, out.width=700}
-plot((1:10)^2, 1:10, col=NinaPalette(), cex=4, pch=16, las=1, type="n")
+plot((1:10)^2, 1:10, col=NinaPalette(), las=1, type="n")
 addLogo(x = 0.5, y = 0.5, size = 1)
 grid.rect(gp = gpar(fill = rgb(1, 1, 1, .6)))
 points((1:10)^2, 1:10, col=NinaPalette(), cex=4, pch=16)
 ```
 
+NinaR: To-do
+========
+
+- Beamer-templat?
+- NINA rapportmall? 
+- Fler funksjoner?
 
 
-Side med Shiny-app
+Shiny
+============
+
+
+Shiny
 =========
 
 ```{r eruptions, echo=FALSE}
@@ -196,3 +346,46 @@ renderPlot({
   lines(dens, col = "blue")
 })
 ```
+
+
+
+
+Versjonering 
+===================
+
+```{r phd_comics, echo=F, out.height=600, fig.cap="Alle bruker noen form av versjonering"}
+include_graphics("img/phd_comics.png")
+```
+
+Versjonering - Git
+=============
+
+Fordeler med et "riktigt" versjoneringssystem
+----------------------------
+
+- Reproduserbarhet: alle steg logges
+- Sinnesfrid: et robust backup-system
+- Fleksibilitet: enkelt å lage nye "grener"
+- Samarbeide: synkronisere versjoner mellom flere PC
+
+Versjonering - Git
+=============
+
+Fordeler med et "riktigt" versjoneringssystem
+----------------------------
+
+- Reproduserbarhet: alle steg logges
+- Sinnesfrid: et robust backup-system
+- Fleksibilitet: enkelt å lage nye "grener"
+- Samarbeide: 
+    + Synkronisere versjoner mellom flere PC
+    + Publisere på github
+    + Installere fra R
+
+ <br>
+ 
+Nackdeler med et "riktigt" versjoneringssystem
+----------------
+
+- Ennå en ting å lære seg
+- Fungerer dårligt med Word (fungerer bra med tekstfiler)
