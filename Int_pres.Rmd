@@ -473,19 +473,23 @@ include_graphics("./img/git_flow.jpg")
 Vanligeste kommandoer:
 ------------
 
-- clone/pull
-- add
-- commit
-- push
+- git clone/pull
+- git add
+- git commit
+- git push
 
 Git i Rstudio
 ================
 Lage et prosjekt, og du kan bruke Git i Rstudio. 
 
+```{r, echo=F, out.width=1200}
+include_graphics("img/git_rstudio.png")
+```
+
 Git i NINA!
 =============
-
-![Nina har et organization-konto på github](img/NINAnor.png)
-
+```{r, echo=F, out.width=1200, fig.cap="Nina har et organization-konto på github"}
+include_graphics("img/NINAnor.png")
+```
 
 # References
