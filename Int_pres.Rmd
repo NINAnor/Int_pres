@@ -5,7 +5,7 @@ author: "Jens Åström"
 date: "`r format(Sys.time(), '%d %b, %Y')`"
 output: 
   NinaR::nina_slidy:
-    self-contained: yes
+    self-contained:
 runtime: shiny
 theme: showdown
 bibliography: mybibfile.bib
@@ -15,7 +15,7 @@ bibliography: mybibfile.bib
 require(NinaR)
 require(knitr)
 require(shiny)
-opts_chunk$set(echo = TRUE, tidy = TRUE, fig.path="figure-slidy")
+opts_chunk$set(echo = TRUE, tidy = TRUE, fig.path="figure-slidy/")
 
 knit_hooks$set(source = function(x, options){
   if (!is.null(options$verbatim) && options$verbatim){
@@ -379,7 +379,7 @@ Shiny
 ============
 
 ```{r}
-shinyAppDir("seatrack_shiny", options=list("height"=1000), encoding="UTF-8")
+shinyAppDir("seatrack", options=list("height"=1000))
 
 ```
 
