@@ -1,0 +1,28 @@
+---
+title: "Velkommen til Hønsefuglportalens analyseportal for takseringskurs"
+author: ""
+date: ""
+output: html_document
+---
+
+Disse sidene er primært ment å være en hjelp i forbindelse med kurs i linjetaksering av hønsefugl basert på *Distance Sampling*. En nærmere beskrivelse av takseringene finner dere på [Hønsefuglportalen](http://honsefugl.nina.no/Innsyn/), og en nærmere beskrivelse av kursinnholdet finner dere på [Hønsefuglportalens kurssider](http://honsefugl.nina.no/Innsyn/Home/Kurs).
+
+Det er viktig å merke seg at funksjonene her er forenklet og tilpasset testdata som samles inn i forbindelse med gjennomføring av kurs. Før du tar disse sidene i bruk har du vanligvis gjennomført en kursøvelse hvor man går langs linjer og registrerer "fugl" langs disse. Hver gang man ser et objekt vil man notere hvor mange det er (flokkstørrelse) samt hvor langt fra takseringslinja observasjonen er gjort. Dette er også helt sentral informasjon når man gjennomfører ekte linjetaksering av hønsefugl basert *Distance-sampling* metoden.
+
+**Klargjøring av kursfila**
+
+Før du starter må du ha klargjort en testfil. I kurssammenheng vil dette vanligvis være resultatet av test-gjennomføringen av linjetaksering. Det er viktig at fila inneholder følgende kolonner, i nevnte rekkefølge: 
+
+- *Linjenavn:* Her skrver du navnet på linja. 
+- *Obsnr:* Forkortelse for observasjonsnummer. Begynn gjerne med 1, og nummerer deretter fortløpende. 
+- *Linjeavstand:* Her skriver du inn astanden fra linja til den aktuelle observasjonen.
+- *Antall:* Her oppgir du hvor mange individer (flokkstørrelse) det var i den aktuelle observasjonen. I kurssammenheng vil dette vanligvis være 1.
+- *Linjelengde:* Her oppgir du hvor lang takseringslinja er.
+
+Det er viktig at du fører inn eventuelle linjer hvor det ikke ble gjort noen observasjoner. I disse fører du kun inn feltene *Linjenavn* og *Linjelengde*.
+
+
+**Lagring av kursfila**
+
+Når du har lagt inn data fra kurs-øvelsen i f.eks. excel er det viktig at du lagrer fila i .txt eller .csv-format. Dette gjør du ved å velge "lagre som" under fil-menyen i Excel. Velg et egnet navn på fila, og velg riktig lagringsformat.  
+

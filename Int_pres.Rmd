@@ -11,7 +11,7 @@ theme: showdown
 bibliography: mybibfile.bib
 ---
 
-```{r setup, echo=F}
+```{r setup, echo=F, message=F}
 require(NinaR)
 require(knitr)
 require(shiny)
@@ -375,16 +375,8 @@ NinaR: To-do
 - Fler funksjoner?
 
 
-Shiny
-============
 
-```{r}
-shinyAppDir("seatrack", options=list("height"=1000))
-
-```
-
-
-Shiny
+Shiny - interaktivt R!
 =========
 
 ```{r eruptions, echo=FALSE}
@@ -405,7 +397,53 @@ renderPlot({
 })
 ```
 
+Shiny - Hvordan?
+==========
 
+- Krever lite kod, se eksempler hos [rstudio](http://shiny.rstudio.com/) 
+- Bruk ferdige templat, see mange eksempler på [showmeshiny](http://www.showmeshiny.com/)
+- Kan inkluderes i andre sites via iframes se for eksempel http://www.nina.no/Milj%C3%B8overv%C3%A5king/Humler-og-dagsommerfugler/Data-fra-prosjektet
+- Nina har installert shiny-server på
+    + Ninsrv16.nina.no - Intern plass for testing
+    + ninweb04.nina.no - Vises eksternt på shiny.nina.no:8080/
+- Publisere
+    + Direkte fra Rstudio gratis på http://shinyapps.io
+    + N16 - krever inlogg, enklest gjennom git
+    + Ninweb04 - Spør Stig Clausen, Jens Åström, Stefan Blumentrath
+
+
+
+Shiny - eksempel; Seatrack data visualization
+============
+
+```{r}
+shinyAppDir("seatrack", options=list("height"=1000))
+
+```
+
+Shiny - eksempel; Distance sampling kursapp
+============
+
+```{r, echo=F}
+shinyAppDir("kursapp", options=list("height"=1000))
+
+```
+
+Shiny - Pros & Cons
+===============
+
+Pros
+---------
+
+- Lage din egen interaktive kommunikasjon!
+- Billig å utvikle (alternativ er It-personnell)
+- Fleksibel - kan lage mange ulike ting
+
+Cons
+----------
+
+- Tar någre dager å lære
+- Ibland kryptiske feilmeddelanden
 
 
 Versjonering 
@@ -415,18 +453,7 @@ Versjonering
 include_graphics("img/phd_comics.png")
 ```
 
-Versjonering - Git
-=============
-
-Fordeler med et "riktigt" versjoneringssystem
-----------------------------
-
-- Reproduserbarhet: alle steg logges
-- Sinnesfrid: et robust backup-system
-- Fleksibilitet: enkelt å lage nye "grener"
-- Samarbeide: synkronisere versjoner mellom flere PC
-
-Versjonering - Git
+Versjonering - Git {.incremental}
 =============
 
 Fordeler med et "riktigt" versjoneringssystem
@@ -438,7 +465,7 @@ Fordeler med et "riktigt" versjoneringssystem
 - Samarbeide: 
     + Synkronisere versjoner mellom flere PC
     + Publisere på github
-    + Installere fra R
+    + Installere fra github i R
 
  <br>
  
@@ -449,19 +476,21 @@ Nackdeler med et "riktigt" versjoneringssystem
 - Fungerer dårligt med Word (fungerer bra med tekstfiler)
 
 
-Bruk alltid markdown!
-========
-
-```{r, echo=F, fig.cap="Spesielt enkelt i Rstudio", fig.width=50}
-include_graphics("img/new_markdown.png")
+Git
+==============
+<br>
+<br>
+```{r git_flow, echo=F, out.width=800, fig.cap="Git arbeider med greiner som kan sys sammen"}
+include_graphics("./img/git_flow.jpg")
 ```
+<br>
+<br>
 
-Bruk alltid markdown!
-========
+- clone/pull
+- add
+- commit
+- push
 
-```{r, echo=F, fig.cap="Starte med eksisterende mall", fig.width=50}
-include_graphics("img/markdown_templ.png")
-```
 
 
 
