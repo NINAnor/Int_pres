@@ -11,9 +11,10 @@ theme: showdown
 bibliography: mybibfile.bib
 ---
 
-```{r setup, include=FALSE}
+```{r setup, echo=F}
 require(NinaR)
 require(knitr)
+require(shiny)
 opts_chunk$set(echo = TRUE, tidy = TRUE, fig.path="figure-slidy")
 
 knit_hooks$set(source = function(x, options){
@@ -33,17 +34,22 @@ knit_hooks$set(source = function(x, options){
 })
 
 ```
-Innhold
+Innhold {.incremental}
 ========
 
-- Reproduserbarhet
+Tre verktøy
+----------
+
 - (R)Markdown
 - Shiny
-- NinaR
 - Git
 
+Og en R-pakke
+-----------------
+- NinaR
 
-Reproduserbarhet - dem {.incremental}
+
+Reproduserbarhet - hva andre sier {.incremental}
 ============
 
 ```{r, out.width=300, echo=F}
@@ -56,7 +62,7 @@ include_graphics("img/how_did_you.jpg")
 >- Hvordan kan jeg lære av analysene dine?
 
 
-Reproduserbarhet - du {.incremental}
+Reproduserbarhet - hva du sier {.incremental}
 ============
 
 ```{r, out.width=300, echo=F}
@@ -82,11 +88,14 @@ Grunnleggende egenskap hos vetenskap
 - Problem
     + Mange programvarer lager ikke spor
         + Excel, SPSS, Minitab etc.
+<br>        
+
+R to the rescue(?)
+----------------------------
+
 - Det finns bedre måter enn rene skriptfiler!
 
-
-
-Bruk alltid markdown!
+Bruk alltid markdown! {.incremental}
 ========
 
 Når du vel prøvt det, vil du aldrig gå tilbake.
@@ -103,33 +112,24 @@ Når du vel prøvt det, vil du aldrig gå tilbake.
     + pdf (penest, lese, printe, publisere i trykk)
 
 
-Bruk alltid markdown!
-========
+Arbeidsflyt
+===============
 
-```{r, echo=F, fig.cap="Spesielt enkelt i Rstudio", fig.width=50}
-include_graphics("img/new_markdown.png")
+```{r, echo=F, out.width=800}
+include_graphics("img/pdf/page1.svg")
 ```
 
-Bruk alltid markdown!
-========
 
-```{r, echo=F, fig.cap="Starte med eksisterende mall", fig.width=50}
-include_graphics("img/markdown_templ.png")
+Arbeidsflyt
+===============
+
+```{r, echo=F, out.width=800}
+include_graphics("img/pdf/page2.svg")
 ```
 
 
 Markdown
 ============
-
-Markdown er et vanligt "språk" for å typsette på internet. 
-
-Se: https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 Brukes enklest gjennom Rstudio. 
 
@@ -137,12 +137,28 @@ Alternativt:
 
 - `install.packages("rmarkdown")`
 - installere [pandoc](http://johnmacfarlane.net/pandoc/installing.html)
-    + Greit verktøy å ha
+    + Greit verktøy å ha ellers også
+
+Kan også brukes uten Rstudio
+```{r, eval=F}
+rmarkdown::render("minfil.Rmd")
+```
+
+Til og med fra terminalen (kan f. eks. kjøres på skjema-basis)
+```{bash, eval=F}
+R -e "rmarkdown::render(\"minfil.Rmd\")"
+
+```
+
+
 
 Markdown
 =========
 
-Eksempler på produserte rapporter
+```{r, echo=F, out.width=600}
+include_graphics("img/pdf/ex1.svg")
+```
+
 
 Eksempel
 ================
@@ -154,7 +170,7 @@ x
 ```
 
 
-Eksempel
+Eksempel - kod
 ================
 
 ```{r}
@@ -166,21 +182,30 @@ summary(mod1)
 
 ```
 
-Eksempel
+Eksempel - tabeller
 ================
+
+```{r, warnings=F, message=F}
+library(pander)
+pander(mod1)
+
+```
+Eller
 
 ```{r}
 knitr::kable(summary(mod1)$coefficients, digits=2)
 ```
 <br>
 
-Alternativt, bruke xtable (best for pdf)
+Alternativt for pdf
 ```{r, results='asis', eval=F}
 require(xtable)
 print(xtable(summary(mod1)$coefficients), type="html")
 ```
 
-Eksempel
+
+
+Eksempel - figurer
 ============
 
 ```{r mod_fig, fig.cap="Model validations"}
@@ -278,26 +303,6 @@ Rapport-mall
 include_graphics("./img/titleborder.png")
 ```
 
-Rapport-mall
-==========
-
-- Hva med referenser?
-
-Rapport-mall
-==========
-
-- Hva med referenser?
-    + Bruk bib-fil (JabRef)
-
-`Markdown`
-Kan skrives `[@NinaR]` for [@NinaR] eller `[-@NinaR]` om du allerede nevner navnet, så her [-@NinaR]. 
-
-```{r, eval=F}
-\citet{astrom2016}
-
-```
-
-
 
 Rapport-maller
 ==========
@@ -318,10 +323,24 @@ Alternativt
 rmarkdown::draft("new_report", "nina_slidy", package="NinaR")
 ```
 
+
+Referenser
+==========
+
+-Bruk bib-fil (f.eks. [JabRef](http://www.fosshub.com/JabRef.html))
+
+
+Kan skrives `[@NinaR]` for [@NinaR] eller `[-@NinaR]` om du allerede nevner navnet, for eksempel kan vi refererere til hva Pedersen et al. skrev [-@Pedersen2016]. 
+
+For kortrapport og andre $\LaTeX$ dokument, bruk `\citet{astrom2016}`, se eksempel i mallen. 
+
+
+
 NINA-grafik
 ==========
 
 ```{r, out.width=700}
+require(NinaR)
 NinaPalette()
 
 plot((1:10)^2, 1:10, col=NinaPalette(), cex=4, pch=16, las=1)
@@ -358,6 +377,11 @@ NinaR: To-do
 
 Shiny
 ============
+
+```{r}
+shinyAppDir("seatrack_shiny", options=list("height"=1000))
+
+```
 
 
 Shiny
@@ -423,5 +447,22 @@ Nackdeler med et "riktigt" versjoneringssystem
 
 - Ennå en ting å lære seg
 - Fungerer dårligt med Word (fungerer bra med tekstfiler)
+
+
+Bruk alltid markdown!
+========
+
+```{r, echo=F, fig.cap="Spesielt enkelt i Rstudio", fig.width=50}
+include_graphics("img/new_markdown.png")
+```
+
+Bruk alltid markdown!
+========
+
+```{r, echo=F, fig.cap="Starte med eksisterende mall", fig.width=50}
+include_graphics("img/markdown_templ.png")
+```
+
+
 
 # References

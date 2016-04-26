@@ -1,0 +1,28 @@
+InfoBegin
+InfoKey: ModDate
+InfoValue: D:20150206192507Z00'00'
+InfoBegin
+InfoKey: CreationDate
+InfoValue: D:20150206192507Z00'00'
+InfoBegin
+InfoKey: Title
+InfoValue: rmarkdown-cheatsheet
+InfoBegin
+InfoKey: Creator
+InfoValue: Keynote
+InfoBegin
+InfoKey: Producer
+InfoValue: Mac OS X 10.10.2 Quartz PDFContext
+PdfID0: f075d8e23f1d0c299d9322b7d93f3262
+PdfID1: f075d8e23f1d0c299d9322b7d93f3262
+NumberOfPages: 2
+PageMediaBegin
+PageMediaNumber: 1
+PageMediaRotation: 0
+PageMediaRect: 0 0 1100 850
+PageMediaDimensions: 1100 850
+PageMediaBegin
+PageMediaNumber: 2
+PageMediaRotation: 0
+PageMediaRect: 0 0 1100 850
+PageMediaDimensions: 1100 850
