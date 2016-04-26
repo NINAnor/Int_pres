@@ -379,7 +379,7 @@ Shiny
 ============
 
 ```{r}
-shinyAppDir("seatrack_shiny", options=list("height"=1000))
+shinyAppDir("seatrack_shiny", options=list("height"=1000), encoding="UTF-8")
 
 ```
 
