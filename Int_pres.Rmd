@@ -37,7 +37,7 @@ knit_hooks$set(source = function(x, options){
 Innhold {.incremental}
 ========
 
-Tre verktøy
+Tre verktøy for R
 ----------
 
 - (R)Markdown
@@ -69,16 +69,16 @@ Reproduserbarhet - hva du sier {.incremental}
 include_graphics("img/what_did_i.jpg")
 ```
 
->- Det tar tid og blir feil når jeg bruker copy paste til Word!
 >- Jeg husker ikke hva jeg gjorde!
 >- Jeg får ikke samme resultater som tidligere!
+>- Det tar tid og blir feil når jeg bruker copy paste til Word!
 >- Det var ett skrivefeil i protokollet, så jeg må kjøre allt på nytt!
 >- Jeg skal gjøre noe liknende igjen men rekker ikke lage allt fra start!
 
 Reproduserbarhet {.incremental}
 ============
 
-Grunnleggende egenskap hos vetenskap
+Grunnleggende egenskap hos vetenskap - forstå og replikere
 --------------
 
 - Allt mer kompliserte analyser - hur lager vi reproduserbare analyser?
@@ -88,11 +88,13 @@ Grunnleggende egenskap hos vetenskap
 - Problem
     + Mange programvarer lager ikke spor
         + Excel, SPSS, Minitab etc.
+    + Vanskelig å skrive å oppdatere analyseprotokoll
 <br>        
 
 R to the rescue(?)
 ----------------------------
 
+- Copy paste til Word er ikke en sikker måte å arbeide på!
 - Det finns bedre måter enn rene skriptfiler!
 
 Bruk alltid markdown! {.incremental}
@@ -110,9 +112,9 @@ Når du vel prøvt det, vil du aldrig gå tilbake.
     + html (publisere)
     + Word (standard for mange)
     + pdf (penest, lese, printe, publisere i trykk)
+- Blir altmer standarden å jobbe i R. Pionjerarbeid av Rstudio.
 
-
-Arbeidsflyt
+Arbeidsflyt - zoom inn
 ===============
 
 ```{r, echo=F, out.width=800}
@@ -120,7 +122,7 @@ include_graphics("img/pdf/page1.svg")
 ```
 
 
-Arbeidsflyt
+Arbeidsflyt - zoom inn
 ===============
 
 ```{r, echo=F, out.width=800}
@@ -139,12 +141,12 @@ Alternativt:
 - installere [pandoc](http://johnmacfarlane.net/pandoc/installing.html)
     + Greit verktøy å ha ellers også
 
-Kan også brukes uten Rstudio
+Klikke på Knit, eller:
 ```{r, eval=F}
 rmarkdown::render("minfil.Rmd")
 ```
 
-Til og med fra terminalen (kan f. eks. kjøres på skjema-basis)
+Kan også kjøres fra terminalen (kan f. eks. kjøres på skjema-basis)
 ```{bash, eval=F}
 R -e "rmarkdown::render(\"minfil.Rmd\")"
 
@@ -153,10 +155,10 @@ R -e "rmarkdown::render(\"minfil.Rmd\")"
 Markdown
 =========
 
-Pdf
+Pdf - penest, kan også produsere ferdige artikler.
 ---------
 
-For å lage pdf på windows maskin, installere [MikTeX](). På Mac, installere [MacTeX](http://tug.org/mactex/). Linux-maskiner bruker ofte TeX_Live.
+For å lage pdf på windows maskin, installere [MikTeX](). På Mac, installere [MacTeX](http://tug.org/mactex/). Linux-maskiner bruker ofte TeX_Live. 
 
 ```{r, echo=F, out.width=600}
 include_graphics("img/pdf/ex1.svg")
@@ -211,11 +213,15 @@ knitr::kable(summary(mod1)$coefficients, digits=2)
 ```
 <br>
 
-Alternativt for pdf
+Flotteste tabellene lages i pdf.
 ```{r, results='asis', eval=F}
 require(xtable)
-print(xtable(summary(mod1)$coefficients), type="html")
+print(xtable(summary(mod1)$coefficients), comments=F)
 ```
+```{r, echo=F, out.height=300}
+include_graphics("img/pdf_table.png")
+```
+
 
 
 
@@ -228,18 +234,6 @@ plot(mod1)
 
 ```
 
-
-- Git
-    + NINAnor
-    + Bruke i R
-    + Terminal
-    + Provosere frem god arbeidsmåte, folderstruktur.
-- NinaR
-    + Andre funksjoner (enn templater)
-    + Skriv funksjoner
-- Begynn her
-    + linker til info til de ulike verktøyen
-    
 
 NinaR - en R-pakke for NINA!
 ========
@@ -258,7 +252,7 @@ library(devtools)
 install_github("NINAnor/NinaR")
 ```
 
-```{r, echo=F, out.width = 400, fig.retina = NULL, fig.cap="Available functions in NinaR V 0.0.4"}
+```{r, echo=F, out.width = 400, fig.retina = NULL, fig.cap="Funksjoner i NinaR V 0.0.4"}
 include_graphics("./img/NinaR_help.png")
 ```
 
@@ -273,17 +267,17 @@ Alternativt
 rmarkdown::draft("new_report", "nina_kortrapport", package="NinaR")
 ```
 
-Rapport-maller
+Rapport-mall
 ==========
 
-```{r, echo=F, out.width = 600, fig.retina = NULL, fig.cap="Nina kortrapport template"}
+```{r, echo=F, out.width = 700, fig.retina = NULL, fig.cap="NinaR mall for kortrapport"}
 include_graphics("./img/nina_kort_template.png")
 ```
 
 Rapport-mall
 ==========
 
-```{r, echo=F, out.width = 500, fig.retina = NULL, fig.cap="Nina kortrapport template"}
+```{r, echo=F, out.width = 700, fig.retina = NULL, fig.cap="Produserer en åpen eller lukket pdf"}
 include_graphics("./img/titleborder.png")
 ```
 
@@ -294,8 +288,12 @@ Rapport-maller
 - Pros
     + Kod og rapport hålls sammen
     + Enkelt å vise statistisk metodikk
+    + Vil for enkelte prosjekt spare mye tid.
+    + Kan automatiseres
+    + Penere resultat-seksjon
 - Cons
-    + Kolleger vill fortsatt bruke Word
+    + Mer vanskelig å samarbeide med dem som vil bruke Word
+    + Nesten ferdig
 
 Presentasjon-maller
 ===========
@@ -308,59 +306,90 @@ rmarkdown::draft("new_report", "nina_slidy", package="NinaR")
 ```
 
 
-Referenser
+Referenser {.incremental}
 ==========
 
--Bruk bib-fil (f.eks. [JabRef](http://www.fosshub.com/JabRef.html))
+- Ja, det fungerer. Referanser fylles i automatiskt på sluttet. Flere formater å velge mellom.
+- Bruk en bib-fil (en vanlig tekstfil og standarden i R). Endnote kan eksportere i bib-format.
+- Hver referanse trenger en "label". Bruk f.eks. [JabRef](http://www.fosshub.com/JabRef.html) for å generere labels å administrere dine referanser.
+
+```{r}
+citation("NinaR")
+
+```
+
 
 
 Kan skrives `[@NinaR]` for [@NinaR] eller `[-@NinaR]` om du allerede nevner navnet, for eksempel kan vi refererere til hva Pedersen et al. skrev [-@Pedersen2016]. 
 
-For kortrapport og andre $\LaTeX$ dokument, bruk `\citet{astrom2016}`, se eksempel i mallen. 
+For kortrapport og andre $\LaTeX$ dokument, bruk `\citet{NinaR}`, se eksempel i mallen. 
 
 
 
-NINA-grafik
+NINA-grafik {.incremental}
 ==========
 
-```{r, out.width=700}
+```{r, out.width=700, fig.cap="NINA-farger enligt NINAs grafiske standard"}
 require(NinaR)
 NinaPalette()
-
-plot((1:10)^2, 1:10, col=NinaPalette(), cex=4, pch=16, las=1)
-
+set.seed(123)
+barplot(runif(5), col=NinaPalette())
 ```
 
-NINA-grafik
+NINA-grafik {.incremental}
 ==========
 
-```{r, message=F, out.width=700}
+```{r, out.width=700, fig.cap="NINAs logofarger"}
+NinaLogoPalette()
+set.seed(123)
+barplot(runif(3), col=NinaLogoPalette())
+```
+
+NINA-grafik {.incremental}
+==========
+
+```{r, out.width=1000, dev='svg', verbatim=T, message=F}
 plot((1:10)^2, 1:10, col=NinaPalette(), cex=4, pch=16, las=1)
 addLogo()
 
 ```
 
-NINA-grafik
+NINA-grafik {.incremental}
 ==========
 
-
-```{r, out.width=700}
+```{r, out.width=1000, dev='svg'}
 plot((1:10)^2, 1:10, col=NinaPalette(), las=1, type="n")
 addLogo(x = 0.5, y = 0.5, size = 1)
 grid.rect(gp = gpar(fill = rgb(1, 1, 1, .6)))
 points((1:10)^2, 1:10, col=NinaPalette(), cex=4, pch=16)
 ```
 
+NINA-grafik - transparense
+==========
+
+```{r, out.width=700}
+set.seed(123)
+barplot(runif(5), col=addAlpha(NinaPalette(), 0.4))
+```
+
+
 NinaR: To-do
 ========
 
-- Beamer-templat?
-- NINA rapportmall? 
+- Forbedre css style sheets
+- Lage stype sheets til Shiny
+- Beamer-templat? (pdf presentasjon)
+- NINA rapportmall? (Hvor mange vil bruke?)
 - Fler funksjoner?
+- Kom med forslag!
+- Bidra med kod på http:/github.com/NINAnor/NinaR
 
 
+Shiny - interaktivt R! 
+=========
 
-Shiny - interaktivt R!
+
+Shiny - interaktivt R! 
 =========
 
 ```{r eruptions, echo=FALSE}
@@ -384,8 +413,9 @@ renderPlot({
 Shiny - Hvordan?
 ==========
 
-- Krever lite kod, se eksempler hos [rstudio](http://shiny.rstudio.com/) 
+- Start med [tutorial](http://shiny.rstudio.com/tutorial/)
 - Bruk ferdige templat, see mange eksempler på [showmeshiny](http://www.showmeshiny.com/)
+- Spør noen som kan. 
 - Kan inkluderes i andre sites via iframes se for eksempel http://www.nina.no/Milj%C3%B8overv%C3%A5king/Humler-og-dagsommerfugler/Data-fra-prosjektet
 - Nina har installert shiny-server på
     + Ninsrv16.nina.no - Intern plass for testing
@@ -409,7 +439,7 @@ Shiny - eksempel; Distance sampling kursapp
 ============
 
 ```{r, echo=F}
-shinyAppDir("kursapp", options=list("height"=1000))
+shinyAppDir("kursapp", options=list("height"=1200))
 
 ```
 
@@ -420,20 +450,22 @@ Pros
 ---------
 
 - Lage din egen interaktive kommunikasjon!
-- Billig å utvikle (alternativ er It-personnell)
+- Billig å utvikle (alternativ er å kode mer fra grunnen av It-personnell)
+    + Som vanligt i R, første gang tar lang tid. Neste gang går kjappere.
 - Fleksibel - kan lage mange ulike ting
+- Krever lite kod, se eksempler hos [rstudio](http://shiny.rstudio.com/) 
 
 Cons
 ----------
 
-- Tar någre dager å lære
-- Ibland kryptiske feilmeddelanden
+- Tar någre dager å lære.
+- Ibland kryptiske feilmeddelanden.
 
 
-Versjonering 
+Versjonering
 ===================
 
-```{r phd_comics, echo=F, out.height=600, fig.cap="Alle bruker noen form av versjonering"}
+```{r phd_comics, echo=F, out.height=800, fig.cap="Alle bruker noen form av versjonering"}
 include_graphics("img/phd_comics.png")
 ```
 
@@ -446,11 +478,15 @@ Fordeler med et "riktigt" versjoneringssystem
 - Reproduserbarhet: alle steg logges
 - Sinnesfrid: et robust backup-system
 - Fleksibilitet: enkelt å lage nye "grener"
+- For deg selv
+    + Backup. Gå tilbake til tidligere fungerende versjon.
+    + Arbeide på ulike PC med samme prosjekt.
 - Samarbeide: 
     + Synkronisere versjoner mellom flere PC
+    + Jobbe på flere grener som sys sammen
     + Publisere på github
     + Installere fra github i R
-
+- Provosere frem gode arbeidsrutiner
  <br>
  
 Nackdeler med et "riktigt" versjoneringssystem
@@ -464,8 +500,8 @@ Git
 ==============
 <br>
 <br>
-```{r git_flow, echo=F, out.width=800, fig.cap="Git arbeider med greiner som kan sys sammen"}
-include_graphics("./img/git_flow.jpg")
+```{r git_flow, echo=F, out.width=1400, fig.cap="Git arbeider med greiner som kan sys sammen"}
+include_graphics("img/git_workflow.png")
 ```
 <br>
 <br>
@@ -491,5 +527,15 @@ Git i NINA!
 ```{r, echo=F, out.width=1200, fig.cap="Nina har et organization-konto på github"}
 include_graphics("img/NINAnor.png")
 ```
+Begrenset antall private repositories. 5 private repositories koster ca 600 NOK per år. (It-avdelningen vurderer å gå øver til Git for sin kode.) 
+
+Begynn med Git!
+=============
+
+- Les mer om Git i vetenskap [her](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3639880/)
+- Gå en kjap [tutorial](https://try.github.io/)
+- Les mer om Git i Rstudio [her](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)
+
+
 
 # References
