@@ -1,3 +1,0 @@
-# DS_kursapp
-
-This simple Shiny-app will be used in a distance sampling class, aimed at volunteers conducting line-transect work for birds (mainly grouse in this case), and where the data will be analysed using Distance Sampling methods. The idea is that the course participants should be able to do simple analysis on their test-data, including looking at the distribution of distance-to-line data. So far, at this stage only "Half Normal" key function is implemented, and data is always truncated at 10%. 

@@ -464,18 +464,15 @@ Shiny - Hvordan?
 Shiny - eksempel; Seatrack data visualization {.incremental}
 ============
 
-```{r}
-shinyAppDir("seatrack", options=list("height"=1000))
+**App removed in public version**
+See original version at http://ninsrv16.nina.no:3838/Int_pres
 
-```
 
 Shiny - eksempel; Distance sampling kursapp
 ============
 
-```{r, echo=F}
-shinyAppDir("kursapp", options=list("height"=1200))
-
-```
+**App removed in public version**
+See original version at http://ninsrv16.nina.no:3838/Int_pres
 
 Shiny - Pros & Cons
 ===============
