@@ -113,6 +113,7 @@ Når du vel prøvt det, vil du aldrig gå tilbake.
     + Word (standard for mange)
     + pdf (penest, lese, printe, publisere i trykk)
 - Blir altmer standarden å jobbe i R. Pionjerarbeid av Rstudio.
+- Provoserer frem bedre kod. Din kod skal kunne leses!
 
 
 Kort ordliste
@@ -167,7 +168,7 @@ R -e "rmarkdown::render(\"minfil.Rmd\")"
 Markdown
 =========
 
-Pdf - penest, kan også produsere ferdige artikler. Du kan mixe markdown og $\LaTeX$ kod i samme dokument.
+Pdf - penest, kan også produsere ferdige artikler. Du kan blande markdown og $\LaTeX$ kod i samme dokument.
 ---------
 
 For å lage pdf på windows maskin, installere [MikTeX](). På Mac, installere [MacTeX](http://tug.org/mactex/). Linux-maskiner bruker ofte TeX_Live. 
@@ -213,12 +214,8 @@ Eksempel - tabeller
 ================
 
 ```{r, warnings=F, message=F}
-library(pander)
-pander(mod1)
-
+pander::pander(mod1)
 ```
-
-Eller
 
 ```{r}
 knitr::kable(summary(mod1)$coefficients, digits=2)
@@ -230,7 +227,7 @@ Flotteste tabellene lages i pdf.
 require(xtable)
 print(xtable(summary(mod1)$coefficients), comments=F)
 ```
-```{r, echo=F, out.height=300}
+```{r, echo=F, out.height=270}
 include_graphics("img/pdf_table.png")
 ```
 
@@ -267,6 +264,9 @@ $$\begin{aligned}
 & = F_1 * F_2
 \end{aligned}$$
           
+Eksempler
+==========
+- Viser pdf og word (finnes i folder "examples")
 
 
 NinaR - en R-pakke for NINA!
@@ -304,14 +304,14 @@ rmarkdown::draft("new_report", "nina_kortrapport", package="NinaR")
 Rapport-mall
 ==========
 
-```{r, echo=F, out.width = 700, fig.retina = NULL, fig.cap="NinaR mall for kortrapport"}
+```{r, echo=F, out.width = 600, fig.retina = NULL, fig.cap="NinaR mall for kortrapport"}
 include_graphics("./img/nina_kort_template.png")
 ```
 
 Rapport-mall
 ==========
 
-```{r, echo=F, out.width = 700, fig.retina = NULL, fig.cap="Produserer en åpen eller lukket pdf"}
+```{r, echo=F, out.width = 600, fig.retina = NULL, fig.cap="Produserer en åpen eller lukket pdf"}
 include_graphics("./img/titleborder.png")
 ```
 
@@ -379,7 +379,7 @@ set.seed(123)
 barplot(runif(3), col=NinaLogoPalette())
 ```
 
-NINA-grafik {.incremental}
+NINA-grafik
 ==========
 
 ```{r, out.width=1000, dev='svg', verbatim=T, message=F}
@@ -388,7 +388,7 @@ addLogo()
 
 ```
 
-NINA-grafik {.incremental}
+NINA-grafik
 ==========
 
 ```{r, out.width=1000, dev='svg'}
@@ -398,7 +398,7 @@ grid.rect(gp = gpar(fill = rgb(1, 1, 1, .6)))
 points((1:10)^2, 1:10, col=NinaPalette(), cex=4, pch=16)
 ```
 
-NINA-grafik - transparense
+NINA-grafik - transparanse
 ==========
 
 ```{r, out.width=700}
@@ -410,12 +410,12 @@ barplot(runif(5), col=addAlpha(NinaPalette(), 0.4))
 NinaR: To-do 2016-04-28
 ========
 
+- Fler funksjoner?
+    + Kom med forslag!
 - Forbedre css style sheets
 - Lage style sheets til Shiny
 - Beamer-templat? (pdf presentasjon)
 - NINA rapportmall? (Hvor mange vil bruke?)
-- Fler funksjoner?
-- Kom med forslag!
 - Bidra med kod på http:/github.com/NINAnor/NinaR
 
 
@@ -452,7 +452,7 @@ Shiny - Hvordan?
 - Spør noen som kan. 
 - Kan inkluderes i andre sites via iframes se for eksempel http://www.nina.no/Milj%C3%B8overv%C3%A5king/Humler-og-dagsommerfugler/Data-fra-prosjektet
 - Nina har installert shiny-server på
-    + Ninsrv16.nina.no - Intern plass for testing
+    + Ninsrv16.nina.no - Intern plass for testing. Lagres på /srv/shiny-server/din_app. Vises på http://ninsrv16.nina.no:3838/din_app
     + ninweb04.nina.no - Vises eksternt på shiny.nina.no:8080/
 - Publisere
     + Direkte fra Rstudio gratis på http://shinyapps.io
@@ -461,7 +461,7 @@ Shiny - Hvordan?
 
 
 
-Shiny - eksempel; Seatrack data visualization
+Shiny - eksempel; Seatrack data visualization {.incremental}
 ============
 
 ```{r}
@@ -514,9 +514,9 @@ Fordeler med et "riktigt" versjoneringssystem
 - Fleksibilitet: enkelt å lage nye "grener"
 - For deg selv
     + Backup. Gå tilbake til tidligere fungerende versjon.
-    + Arbeide på ulike PC med samme prosjekt.
+    + Arbeide på flere maskiner med samme prosjekt.
 - Samarbeide: 
-    + Synkronisere versjoner mellom flere PC
+    + Synkronisere versjoner mellom flere maskiner
     + Jobbe på flere grener som sys sammen
     + Publisere på github
     + Installere fra github i R
@@ -532,8 +532,7 @@ Nackdeler med et "riktigt" versjoneringssystem
 
 Git
 ==============
-<br>
-<br>
+
 ```{r git_flow, echo=F, out.width=1400, fig.cap="Git arbeider med greiner som kan sys sammen. Eksempel fra http://dx.doi.org/10.1186%2F1751-0473-8-7"}
 include_graphics("img/git_workflow.png")
 ```
@@ -554,13 +553,13 @@ Git i Rstudio
 ================
 Lage et prosjekt, og du kan bruke Git i Rstudio. 
 
-```{r, echo=F, out.width=1200}
+```{r, echo=F, out.width=1000}
 include_graphics("img/git_rstudio.png")
 ```
 
 Git i NINA!
 =============
-```{r, echo=F, out.width=1200, fig.cap="Nina har et organization-konto på github"}
+```{r, echo=F, out.width=1000, fig.cap="Nina har et organization-konto på github"}
 include_graphics("img/NINAnor.png")
 ```
 Begrenset antall private repositories. 5 private repositories koster ca 600 NOK per år. (It-avdelningen vurderer å gå øver til Git for sin kode.) 
@@ -573,5 +572,9 @@ Begynn med Git!
 - Les mer om Git i Rstudio [her](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)
 - Git dokumentasjon på [Norsk](https://git-scm.com/book/no-nb/v1/Komme-i-gang)
 
+SLUTT!
+============
+- Denne presentasjon kommer til å lagres på http://ninsrv16.nina.no:3838/Int_pres
+- Kod finns (snart, uten shinyapper) på http://github.com/NINAnor/Int_pres
 
 # References
