@@ -1,0 +1,62 @@
+---
+title: "A title for a really great piece of research, just the best, really"
+author: "Donald Trump"
+date: "28 april 2016"
+output: 
+  pdf_document:
+    fig_caption: yes
+documentclass: article
+classoption: twocolumn
+bibliography: ../mybibfile.bib
+abstract: The current research, and it is really great research, it really is. It relies on the theory — and I have the best theories, you know, I use the best theories in my research. It really is quite amazing just how great the theory is, but I’m not really, in fact — it is a theory. A really good one and I’ve talked to people and, lots of people actually, and they all think what I said. It has a lot of appeal. It’s really just all there and what it is. If people, you know, losers and whatever, if they don’t get it, then what are you going to do? It’s not like the idea isn’t there and that, you know, it’s what it is. I have to shake my head. Everyone is just shaking their heads. It really is. 
+---
+  
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, tidy=TRUE, comment='')
+options(width=40)
+
+```
+
+Introduction
+======
+Along with the theory, there’s other work [@trump1987]. Existing data — and again, I have the best data. You would really, if you had the same great data, be completely happy and the data are there. And they are really, you know, data and we have all kinds. The best kinds. And that is what we base the current work, which is great work, that I did and it’s great. If other people want to be walked through like babies or something, then I don’t know what their problem is. The data just are there so get off your lazy butts and stop looking for handouts. I’m not here to give handouts, you shouldn’t expect that. There are other people who have data that, at least on first glance, and if you believe the haters and losers who want to stop what I am doing. Sure, I could terminate these people, I could like totally ruin their lives, and they’d be all “Oh no, what am I going to do” running around flopping around like someone who needs a punch in the face, you know what I’m talking about? If you see what they say. I don’t know. How can they get away with that? Take a look—you just take a look at what’s going on. I stick up for people when they are right. These other losers need to be fired. I could probably sue them, but that’s probably what they want anyway — to get my attention as if I would bother.
+
+Let me just tell you something, I would love to do it. Absolutely love to drag these people, these liars, these little people with their petty concerns, but I am standing up for the right thing. That’s what I do because that’s what I have done and, ask anyone, it is what makes me a great researcher. I would rather write about the issues, the current research, which is much better than what other people have done. It’s going to happen. 
+
+Methods
+===========
+\emph{Participants.} I was in Michigan and nobody there, at the rally, and there were a lot of 
+people at the rally — we always have a lot of people because what I say, and I have the best words, really makes people, like regular people. They are the ones that I stick up for. Not the losers and takers. Or the bimbos.
+
+
+```{r, echo=T}
+1+1==3
+```
+
+
+\emph{Procedure.} So what people did, and we were the ones, you know, the people in charge. And we had the cameras, really just the best cameras — we had everything, and the people were, now I don’t want to say too much about it, but we had  everything and it was better, and still cost less — because I am the one paying for this. It is money out of my pocket. And my pockets are deep because I am, and have been, a huge success in everything that I have done. I don’t owe, even a cent, to funding agencies at all, this is all mine so I’m not beholden to anyone. The research, and I know research, and this is top-shelf research was the best. One of the best research papers in the world, by the way. Make no mistake. Make no mistake at all — this is what those other people wish they had done or what they wish they were doing, but they aren’t because I am. So, you know, they are whatever, not worth the time.
+
+Results
+=======
+
+We ran analyses. The best analyses, make no mistake, these analyses were absolutely top notch. And there were, of course, numbers and the best numbers. They really were. The numbers that is. The findings, what the numbers said, they are great.
+
+If you look at them, and I have, other people have and it is clear — and you cannot really argue about it—the analyses are, in fact, tremendous. And it is really something. It is. I’ve seen findings over the years, and I’ve had a lot of dealings with numbers — big numbers — and, no mistake, these numbers are, even by the standards of bozos who don’t believe what they see, these numbers are really great. These are numbers, no doubt. And those are the best numbers. You can rely on those numbers because they are great numbers. It is impressive. 
+
+```{r, message=F, fig.cap="My message to the weirdos."}
+require(NinaR)
+barplot(c(0.1, 0.3, 0.8, 0.3, 0.1), col=NinaPalette())
+
+```
+
+
+
+Discussion
+==========
+
+If you look at the facts, and that’s what we have here, facts and not just regular facts, but the best facts, the clearest, and best, the really great and obvious facts, and people have seen them. We have had a lot of people look at these facts and I have looked at these facts. The people who don’t agree are pinheads. Why they won’t talk about, perhaps only they know and when I called them out, and some people thought that was a bad idea, but I didn’t back down and now people, and really the best people, the best people that are around and know, actually know, what they are doing, now say that I was right. Of course, I knew that all along, but some people are — and not all people, I’m not saying, you know, uneducated people, because I love uneducated people, they are just the best, you know? I did that because I felt that something had to be done. I am decisive.
+
+I make decisions. I make decisions every day, and those decisions have made me tons of money [@trump2004]. I have a lot of money because I am smart and make the best decisions — and the decisions are really great and then there is a lot of money. You cannot argue with that, can you? No. You can’t.
+
+References
+============
