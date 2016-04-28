@@ -88,14 +88,14 @@ Grunnleggende egenskap hos vetenskap - forstå og replikere
 - Problem
     + Mange programvarer lager ikke spor
         + Excel, SPSS, Minitab etc.
-    + Vanskelig å skrive å oppdatere analyseprotokoll
+    + Vanskelig å skrive å oppdatere gode analyseprotokoll
 <br>        
 
 R to the rescue(?)
 ----------------------------
 
-- Copy paste til Word er ikke en sikker måte å arbeide på!
-- Det finns bedre måter enn rene skriptfiler!
+- Copy paste til Word er en arbeidsom og usikker måte å arbeide på!
+- Rene skriptfiler er vanskelig å læse og viser ikke resultat!
 
 Bruk alltid markdown! {.incremental}
 ========
@@ -113,6 +113,18 @@ Når du vel prøvt det, vil du aldrig gå tilbake.
     + Word (standard for mange)
     + pdf (penest, lese, printe, publisere i trykk)
 - Blir altmer standarden å jobbe i R. Pionjerarbeid av Rstudio.
+
+
+Kort ordliste
+======================
+
+- Markdown - enkelt typsettingspråk, allt mer brukt.
+- rmarkdown - R-pakke for lenke sammen R-kod og Markdown
+- knitr - R-pakke som gjør mye av jobben i rmarkdown
+- pandoc - konverterer et dokumentformat til et annet, brukes i rmarkdown
+- $\LaTeX$ - eldre, mer kraftfullt typsettingsspråk.
+- Sweave - R-pakke for å lenke sammen R-kod og $\LaTeX$
+
 
 Arbeidsflyt - zoom inn
 ===============
@@ -133,7 +145,7 @@ include_graphics("img/pdf/page2.svg")
 Markdown
 ============
 
-Brukes enklest gjennom Rstudio. 
+Brukes enklest gjennom Rstudio, allt fungerer out of the box, foruten  å lage pdf. 
 
 Alternativt: 
 
@@ -155,7 +167,7 @@ R -e "rmarkdown::render(\"minfil.Rmd\")"
 Markdown
 =========
 
-Pdf - penest, kan også produsere ferdige artikler.
+Pdf - penest, kan også produsere ferdige artikler. Du kan mixe markdown og $\LaTeX$ kod i samme dokument.
 ---------
 
 For å lage pdf på windows maskin, installere [MikTeX](). På Mac, installere [MacTeX](http://tug.org/mactex/). Linux-maskiner bruker ofte TeX_Live. 
@@ -233,6 +245,28 @@ par(mfrow=c(2,2))
 plot(mod1)
 
 ```
+
+Eksempel - ligninger/ekvasjoner {.incremental}
+============
+
+Ligninger skreves i $\LaTeX$-format (som i Open Office). For eksempel `$y= \beta_0 + \beta_1$` blir $y= \beta_0 + \beta_1$.
+
+<br>
+Ligninger plasseres utenfor tekst gjennom å bruke `$$ y=x $$`.
+
+$$\begin{align*}
+ f(x)  &= a x^2+b x +c   &   g(x)  &= d x^3 \\
+ f'(x) &= 2 a x +b       &   g'(x) &= 3 d x^2
+\end{align*}$$
+
+God å typsette mer komplekse eksempler
+
+$$\begin{aligned}
+\mathcal{L}^{-1}\left\{f(d)\right\} &= \mathcal{L}^{-1}\left\{f_1(\delta).f_2(\delta)\right\} \\
+& = \exp{(mt)} \star \left\{\frac{l}{2\sqrt{\pi t^3}} exp{(-l^2/{4t})}\right\} \\
+& = F_1 * F_2
+\end{aligned}$$
+          
 
 
 NinaR - en R-pakke for NINA!
@@ -322,7 +356,7 @@ citation("NinaR")
 
 Kan skrives `[@NinaR]` for [@NinaR] eller `[-@NinaR]` om du allerede nevner navnet, for eksempel kan vi refererere til hva Pedersen et al. skrev [-@Pedersen2016]. 
 
-For kortrapport og andre $\LaTeX$ dokument, bruk `\citet{NinaR}`, se eksempel i mallen. 
+For kortrapport, bruk $\LaTeX$-kommandoet`\citet{NinaR}`, se eksempel i mallen. 
 
 
 
@@ -358,7 +392,7 @@ NINA-grafik {.incremental}
 ==========
 
 ```{r, out.width=1000, dev='svg'}
-plot((1:10)^2, 1:10, col=NinaPalette(), las=1, type="n")
+plot((1:10)^2, 1:10, las=1, type="n")
 addLogo(x = 0.5, y = 0.5, size = 1)
 grid.rect(gp = gpar(fill = rgb(1, 1, 1, .6)))
 points((1:10)^2, 1:10, col=NinaPalette(), cex=4, pch=16)
@@ -373,11 +407,11 @@ barplot(runif(5), col=addAlpha(NinaPalette(), 0.4))
 ```
 
 
-NinaR: To-do
+NinaR: To-do 2016-04-28
 ========
 
 - Forbedre css style sheets
-- Lage stype sheets til Shiny
+- Lage style sheets til Shiny
 - Beamer-templat? (pdf presentasjon)
 - NINA rapportmall? (Hvor mange vil bruke?)
 - Fler funksjoner?
@@ -500,7 +534,7 @@ Git
 ==============
 <br>
 <br>
-```{r git_flow, echo=F, out.width=1400, fig.cap="Git arbeider med greiner som kan sys sammen"}
+```{r git_flow, echo=F, out.width=1400, fig.cap="Git arbeider med greiner som kan sys sammen. Eksempel fra http://dx.doi.org/10.1186%2F1751-0473-8-7"}
 include_graphics("img/git_workflow.png")
 ```
 <br>
@@ -509,10 +543,12 @@ include_graphics("img/git_workflow.png")
 Vanligeste kommandoer:
 ------------
 
-- git clone/pull
-- git add
-- git commit
-- git push
+- git init - intitiere en .git-folder
+- git clone/pull - hente hem data
+- git add - legg til dine endringer lokalt
+- git commit - "bekrefte" dine endringer, grenen vokser
+- git push - send dine endringer til nettet
+- git merge - sy sammen ulike grener
 
 Git i Rstudio
 ================
@@ -535,7 +571,7 @@ Begynn med Git!
 - Les mer om Git i vetenskap [her](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3639880/)
 - Gå en kjap [tutorial](https://try.github.io/)
 - Les mer om Git i Rstudio [her](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN)
-
+- Git dokumentasjon på [Norsk](https://git-scm.com/book/no-nb/v1/Komme-i-gang)
 
 
 # References
